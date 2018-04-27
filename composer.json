@@ -1,0 +1,32 @@
+{
+    "name": "qlimix/logging-exception-handler",
+    "type": "package",
+    "license": "LGPL-3.0-only",
+    "authors": [
+        {
+            "name": "frank",
+            "email": "frank@qlimix.net"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Qlimix\\Log\\": "src/"
+        }
+    },
+    "require": {
+        "qlimix/logging": "dev-master"
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "suggest": {
+        "qlimix/uuid": "UUID generator interface, for request-id middleware",
+        "qlimix/logging": "Response/request logging"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url":  "git@bitbucket.org:qlimix/logging.git"
+        }
+    ]
+}
