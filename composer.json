@@ -19,10 +19,6 @@
     "config": {
         "sort-packages": true
     },
-    "suggest": {
-        "qlimix/uuid": "UUID generator interface, for request-id middleware",
-        "qlimix/logging": "Response/request logging"
-    },
     "repositories": [
         {
             "type": "vcs",
