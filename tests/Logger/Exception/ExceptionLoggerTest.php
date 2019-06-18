@@ -153,4 +153,30 @@ final class ExceptionLoggerTest extends TestCase
 
         $this->exceptionLogger->debug($actualChannel, new Exception($actualMessage));
     }
+
+    /**
+     * @test
+     */
+    public function shouldNotThrowExceptionOnFailingLogHandler(): void
+    {
+        $actualMessage = 'test';
+        $actualChannel = 'test';
+
+        $this->logHandler->expects($this->once())
+            ->method('log')
+            ->with(
+                $this->callback(
+                static function (Channel $channel) use (&$actualChannel) {
+                    return $channel->getName() === $actualChannel;
+                }),
+                $this->callback(static function (Level $level) {
+                    return $level->equals(Level::createDebug());
+                }),
+                $this->callback(static function (string $message) use (&$actualMessage) {
+                    return $message === $actualMessage;
+                })
+            )->willThrowException(new Exception());
+        
+        $this->exceptionLogger->debug($actualChannel, new Exception($actualMessage));
+    }
 }
