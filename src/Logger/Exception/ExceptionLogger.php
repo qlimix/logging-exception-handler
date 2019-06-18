@@ -5,17 +5,13 @@ namespace Qlimix\Log\Logger\Exception;
 use Qlimix\Log\Handler\Channel;
 use Qlimix\Log\Handler\Level;
 use Qlimix\Log\Handler\LogHandlerInterface;
+use Throwable;
 
 final class ExceptionLogger implements ExceptionLoggerInterface
 {
-    /**
-     * @var LogHandlerInterface
-     */
+    /** @var LogHandlerInterface */
     private $logHandler;
 
-    /**
-     * @param LogHandlerInterface $logHandler
-     */
     public function __construct(LogHandlerInterface $logHandler)
     {
         $this->logHandler = $logHandler;
@@ -24,7 +20,15 @@ final class ExceptionLogger implements ExceptionLoggerInterface
     /**
      * @inheritDoc
      */
-    public function critical(string $channel, \Throwable $exception): void
+    public function emergency(string $channel, Throwable $exception): void
+    {
+        $this->logException($channel, Level::createEmergency(), $exception);
+    }
+
+    /**
+     * @inheritDoc
+     */
+    public function critical(string $channel, Throwable $exception): void
     {
         $this->logException($channel, Level::createCritical(), $exception);
     }
@@ -32,7 +36,7 @@ final class ExceptionLogger implements ExceptionLoggerInterface
     /**
      * @inheritDoc
      */
-    public function alert(string $channel, \Throwable $exception): void
+    public function alert(string $channel, Throwable $exception): void
     {
         $this->logException($channel, Level::createAlert(), $exception);
     }
@@ -40,7 +44,7 @@ final class ExceptionLogger implements ExceptionLoggerInterface
     /**
      * @inheritDoc
      */
-    public function error(string $channel, \Throwable $exception): void
+    public function error(string $channel, Throwable $exception): void
     {
         $this->logException($channel, Level::createError(), $exception);
     }
@@ -48,7 +52,7 @@ final class ExceptionLogger implements ExceptionLoggerInterface
     /**
      * @inheritDoc
      */
-    public function debug(string $channel, \Throwable $exception): void
+    public function debug(string $channel, Throwable $exception): void
     {
         $this->logException($channel, Level::createDebug(), $exception);
     }
@@ -56,7 +60,7 @@ final class ExceptionLogger implements ExceptionLoggerInterface
     /**
      * @inheritDoc
      */
-    private function logException(string $channel, Level $level, \Throwable $exception): void
+    private function logException(string $channel, Level $level, Throwable $exception): void
     {
         try {
             $this->logHandler->log(
@@ -64,15 +68,15 @@ final class ExceptionLogger implements ExceptionLoggerInterface
                 $level,
                 $exception->getMessage(),
                 [
-                    'backtrace' => (string)$exception,
+                    'backtrace' => (string) $exception,
                     'message' => $exception->getMessage(),
                     'code' => $exception->getCode(),
                     'file' => $exception->getFile(),
-                    'line' => $exception->getLine()
+                    'line' => $exception->getLine(),
                 ]
             );
-        } catch (\Throwable $exception) {
-            # not logging the logger
+        } catch (Throwable $exception) {
+            // not logging the logger
         }
     }
 }

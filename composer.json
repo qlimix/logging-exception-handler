@@ -1,28 +1,37 @@
 {
     "name": "qlimix/logging-exception-handler",
-    "type": "package",
-    "license": "LGPL-3.0-only",
+    "type": "library",
+    "description": "Logging exception",
+    "license": "MIT",
+    "keywords": [
+        "logging",
+        "log",
+        "exceptions"
+    ],
     "authors": [
         {
             "name": "frank",
             "email": "frank@qlimix.net"
         }
     ],
+    "require": {
+        "php": ">=7.2",
+        "qlimix/logging": "^1.0"
+    },
     "autoload": {
         "psr-4": {
             "Qlimix\\Log\\": "src/"
         }
     },
-    "require": {
-        "qlimix/logging": "dev-master"
+    "autoload-dev": {
+        "psr-4": {
+            "Qlimix\\Tests\\Log\\": "tests/"
+        }
     },
     "config": {
         "sort-packages": true
     },
-    "repositories": [
-        {
-            "type": "vcs",
-            "url":  "git@bitbucket.org:qlimix/logging.git"
-        }
-    ]
+    "require-dev": {
+        "qlimix/code-standard": "^1.0"
+    }
 }
