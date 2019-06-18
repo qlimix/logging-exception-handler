@@ -1,7 +1,7 @@
 {
     "name": "qlimix/logging-exception-handler",
     "type": "library",
-    "description": "Logging exception",
+    "description": "Logging exceptions",
     "license": "MIT",
     "keywords": [
         "logging",
