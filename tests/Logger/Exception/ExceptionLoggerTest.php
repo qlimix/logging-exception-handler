@@ -12,11 +12,9 @@ use Qlimix\Log\Logger\Exception\ExceptionLogger;
 
 final class ExceptionLoggerTest extends TestCase
 {
-    /** @var MockObject */
-    private $logHandler;
+    private MockObject $logHandler;
 
-    /** @var ExceptionLogger */
-    private $exceptionLogger;
+    private ExceptionLogger $exceptionLogger;
 
     protected function setUp(): void
     {
@@ -24,10 +22,7 @@ final class ExceptionLoggerTest extends TestCase
         $this->exceptionLogger = new ExceptionLogger($this->logHandler);
     }
 
-    /**
-     * @test
-     */
-    public function shouldLogEmergencyException(): void
+    public function testShouldLogEmergencyException(): void
     {
         $actualMessage = 'test';
         $actualChannel = 'test';
@@ -50,10 +45,7 @@ final class ExceptionLoggerTest extends TestCase
         $this->exceptionLogger->emergency($actualChannel, new Exception($actualMessage));
     }
 
-    /**
-     * @test
-     */
-    public function shouldLogCriticalException(): void
+    public function testShouldLogCriticalException(): void
     {
         $actualMessage = 'test';
         $actualChannel = 'test';
@@ -76,10 +68,7 @@ final class ExceptionLoggerTest extends TestCase
         $this->exceptionLogger->critical($actualChannel, new Exception($actualMessage));
     }
 
-    /**
-     * @test
-     */
-    public function shouldLogAlertException(): void
+    public function testShouldLogAlertException(): void
     {
         $actualMessage = 'test';
         $actualChannel = 'test';
@@ -102,10 +91,7 @@ final class ExceptionLoggerTest extends TestCase
         $this->exceptionLogger->alert($actualChannel, new Exception($actualMessage));
     }
 
-    /**
-     * @test
-     */
-    public function shouldLogErrorException(): void
+    public function testShouldLogErrorException(): void
     {
         $actualMessage = 'test';
         $actualChannel = 'test';
@@ -128,10 +114,7 @@ final class ExceptionLoggerTest extends TestCase
         $this->exceptionLogger->error($actualChannel, new Exception($actualMessage));
     }
 
-    /**
-     * @test
-     */
-    public function shouldLogDebugException(): void
+    public function testShouldLogDebugException(): void
     {
         $actualMessage = 'test';
         $actualChannel = 'test';
@@ -154,10 +137,7 @@ final class ExceptionLoggerTest extends TestCase
         $this->exceptionLogger->debug($actualChannel, new Exception($actualMessage));
     }
 
-    /**
-     * @test
-     */
-    public function shouldNotThrowExceptionOnFailingLogHandler(): void
+    public function testShouldNotThrowExceptionOnFailingLogHandler(): void
     {
         $actualMessage = 'test';
         $actualChannel = 'test';
@@ -176,7 +156,7 @@ final class ExceptionLoggerTest extends TestCase
                     return $message === $actualMessage;
                 })
             )->willThrowException(new Exception());
-        
+
         $this->exceptionLogger->debug($actualChannel, new Exception($actualMessage));
     }
 }
