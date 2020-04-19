@@ -9,57 +9,38 @@ use Throwable;
 
 final class ExceptionLogger implements ExceptionLoggerInterface
 {
-    /** @var LogHandlerInterface */
-    private $logHandler;
+    private LogHandlerInterface $logHandler;
 
     public function __construct(LogHandlerInterface $logHandler)
     {
         $this->logHandler = $logHandler;
     }
 
-    /**
-     * @inheritDoc
-     */
     public function emergency(string $channel, Throwable $exception): void
     {
         $this->logException($channel, Level::createEmergency(), $exception);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function critical(string $channel, Throwable $exception): void
     {
         $this->logException($channel, Level::createCritical(), $exception);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function alert(string $channel, Throwable $exception): void
     {
         $this->logException($channel, Level::createAlert(), $exception);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function error(string $channel, Throwable $exception): void
     {
         $this->logException($channel, Level::createError(), $exception);
     }
 
-    /**
-     * @inheritDoc
-     */
     public function debug(string $channel, Throwable $exception): void
     {
         $this->logException($channel, Level::createDebug(), $exception);
     }
 
-    /**
-     * @inheritDoc
-     */
     private function logException(string $channel, Level $level, Throwable $exception): void
     {
         try {
