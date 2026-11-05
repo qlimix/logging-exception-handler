@@ -1,5 +1,7 @@
 # Logging-exception-handler
 
+> **Archived:** this package is no longer maintained.
+
 [![Travis CI](https://api.travis-ci.org/qlimix/logging-exception-handler.svg?branch=master)](https://travis-ci.org/qlimix/logging-exception-handler)
 [![Coveralls](https://img.shields.io/coveralls/github/qlimix/logging-exception-handler.svg)](https://coveralls.io/github/qlimix/logging-exception-handler)
 [![Packagist](https://img.shields.io/packagist/v/qlimix/logging-exception-handler.svg)](https://packagist.org/packages/qlimix/logging-exception-handler)
